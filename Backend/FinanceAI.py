@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 from textwrap import dedent
 from flask import Flask, jsonify, request
 from flask_cors import CORS
@@ -8,15 +9,15 @@ from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.newspaper4k import Newspaper4kTools
 import markdown2
 
-# Initialize Flask app
+load_dotenv()
+
+# Initializing Flask app
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)  # Enabling CORS for all routes
 
-# Set API keys
-os.environ['GROQ_API_KEY'] = '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'
-os.environ['PHI_API_KEY'] = 'ag-B-F5CPrylAcD0aqwobx380TFVGsHdWUCrmbEeLWYuXE'
+GROQ_API_KEY = os.getenv('groq_api_key')
 
-# Initialize the research agent
+# Initializing the research agent
 research_agent = Agent(
     model=Groq(id="llama3-70b-8192"),
     tools=[DuckDuckGoTools(), Newspaper4kTools()],
@@ -113,7 +114,7 @@ def beautify_markdown(content):
     elif "duckduckgo_news" in content:
         content = content.split("\n\n", 1)[-1]
 
-    # Convert Markdown to HTML
+    # Markdown to HTML
     html_content = markdown2.markdown(content)
     return html_content
 
@@ -132,7 +133,7 @@ def handle_query():
         # Beautify and convert to HTML
         beautified_content = beautify_markdown(response_content)
 
-        # Return the HTML content
+        # Returning the HTML content
         return jsonify({'response': beautified_content})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
