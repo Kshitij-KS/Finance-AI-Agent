@@ -1,4 +1,4 @@
-# 🚀 Finance AI Bot
+# Finance AI Bot
 
 The **Finance AI Bot** is an intelligent financial assistant that provides real-time insights, analysis, and reports on financial markets, stocks, and economic trends. It leverages advanced AI models (e.g., Groq) and tools (e.g., DuckDuckGo, Newspaper4k) to deliver accurate and actionable information in a user-friendly format.
 
@@ -6,11 +6,11 @@ The **Finance AI Bot** is an intelligent financial assistant that provides real-
 
 ## ✨ Features
 
-- 🚀 **Real-Time Financial Analysis**: Get up-to-date insights on stock markets, economic trends, and financial news.
-- 🤖 **AI-Powered Research**: Utilizes Groq's AI models for deep financial analysis and reporting.
-- 🌐 **Web Integration**: Fetches data from DuckDuckGo and Newspaper4k for comprehensive research.
-- 🎨 **User-Friendly Interface**: A clean and intuitive React frontend for seamless interaction.
-- 📊 **Customizable Reports**: Generates detailed financial reports in Markdown format.
+- **Real-Time Financial Analysis**: Get up-to-date insights on stock markets, economic trends, and financial news.
+- **AI-Powered Research**: Utilizes Groq's AI models for deep financial analysis and reporting.
+- **Web Integration**: Fetches data from DuckDuckGo and Newspaper4k for comprehensive research.
+- **User-Friendly Interface**: A clean and intuitive React frontend for seamless interaction.
+- **Customizable Reports**: Generates detailed financial reports in Markdown format.
 
 ---
 
