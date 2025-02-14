@@ -33,6 +33,8 @@ The **Finance AI Bot** is an intelligent financial assistant that provides real-
 - **npm** (Node package manager)
 - **pip** (Python package manager)
 
+---
+
 ### Installation
 
 1. Clone the repository:
@@ -48,6 +50,8 @@ The **Finance AI Bot** is an intelligent financial assistant that provides real-
    cd ../Frontend
    npm install
 
+---
+
 ### Usage
 
 1. Open the React app in your browser at http://localhost:3000.
@@ -55,6 +59,8 @@ The **Finance AI Bot** is an intelligent financial assistant that provides real-
 2. Enter a financial query (e.g., "What is the current state of the stock market?").
 
 3. View the AI-generated financial report in the response section.
+
+---
 
 ### Acknowledgments
 
@@ -65,6 +71,8 @@ The **Finance AI Bot** is an intelligent financial assistant that provides real-
 **Newspaper4k**: For article scraping and summarization.
 
 **React**: For building the user interface.
+
+---
 
 ### Contact
 
