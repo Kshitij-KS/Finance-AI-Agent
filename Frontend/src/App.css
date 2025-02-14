@@ -1,0 +1,8 @@
+.container {
+    width: 300px; /* Adjust the width as needed */
+    margin-right: 10px; /* Reduce the right margin */
+    box-sizing: border-box; /* Include padding and border in the width */
+    padding: 15px; /* Optional: Add padding inside the container */
+    border: 1px solid #ccc; /* Optional: Add a border */
+    background-color:rgb(177, 177, 177); /* Optional: Add a background color */
+  }
