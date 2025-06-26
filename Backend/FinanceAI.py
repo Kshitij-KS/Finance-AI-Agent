@@ -11,9 +11,8 @@ import markdown2
 
 load_dotenv()
 
-# Initializing Flask app
 app = Flask(__name__)
-CORS(app)  # Enabling CORS for all routes
+CORS(app) 
 
 GROQ_API_KEY = os.getenv('groq_api_key')
 
@@ -130,7 +129,6 @@ def handle_query():
         result = research_agent.run(user_query)
         response_content = result.content
 
-        # Beautify and convert to HTML
         beautified_content = beautify_markdown(response_content)
 
         # Returning the HTML content

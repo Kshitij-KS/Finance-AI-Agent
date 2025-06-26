@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './App.css';
 
 function App() {
   const [query, setQuery] = useState('');
@@ -25,28 +26,39 @@ function App() {
   };
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1>Financial AI Agent</h1>
-      <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Enter your financial query"
-          style={{ width: '300px', padding: '10px', marginRight: '10px' }}
-        />
-        <button type="submit" disabled={loading}>
-          {loading ? 'Processing...' : 'Submit'}
-        </button>
-      </form>
-
-      {response && (
-        <div className="container">
-          <h2>Response:</h2>
-          {/* Render the HTML content using dangerouslySetInnerHTML */}
-          <div dangerouslySetInnerHTML={{ __html: response }} />
-        </div>
-      )}
+    <div className="app-root">
+      <div className="app-card">
+        <h1 className="app-title">Financial AI Agent</h1>
+        <form className="app-form" onSubmit={handleSubmit}>
+          <input
+            className="app-input"
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Ask your financial question..."
+            disabled={loading}
+          />
+          <button
+            className="app-button"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? 'Processing...' : 'Submit'}
+          </button>
+        </form>
+        {response && (
+          <div className="app-response-container">
+            <h2 className="app-response-title">Response:</h2>
+            <div
+              className="app-response-content"
+              dangerouslySetInnerHTML={{ __html: response }}
+            />
+          </div>
+        )}
+      </div>
+      <div className="app-footer">
+        <span>Powered by your Financial AI Agent &copy; {new Date().getFullYear()}</span>
+      </div>
     </div>
   );
 }

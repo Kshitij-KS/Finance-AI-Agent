@@ -16,7 +16,7 @@ EXPOSE 5000
 
 CMD [ "python", "FinanceAI.py" ]
 
-#Frontend
+#Frontend 
 FROM node:18-alpine  AS frontend
 
 WORKDIR /usr/src/app
@@ -24,7 +24,7 @@ WORKDIR /usr/src/app
 COPY Frontend/package.json .
 COPY Frontend/package-lock.json .
 
-# Install frontend dependencies
+# Installing frontend dependencies
 RUN npm install
 
 COPY Frontend/ .
