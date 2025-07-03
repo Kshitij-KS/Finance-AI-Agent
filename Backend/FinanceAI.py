@@ -15,7 +15,7 @@ app = Flask(__name__)
 CORS(app) 
 
 GROQ_API_KEY = os.getenv('groq_api_key')
-GROQ_ID = os.getend('groq_id')
+GROQ_ID = os.getenv('groq_id')
 
 research_agent = Agent(
     model=Groq(id=GROQ_ID, api_key=GROQ_API_KEY),
