@@ -15,10 +15,10 @@ app = Flask(__name__)
 CORS(app) 
 
 GROQ_API_KEY = os.getenv('groq_api_key')
+GROQ_ID = os.getend('groq_id')
 
-# Initializing the research agent
 research_agent = Agent(
-    model=Groq(id="llama3-70b-8192"),
+    model=Groq(id=GROQ_ID, api_key=GROQ_API_KEY),
     tools=[DuckDuckGoTools(), Newspaper4kTools()],
     description=dedent("""\
         You are an elite research analyst in the financial services domain.
@@ -137,4 +137,4 @@ def handle_query():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

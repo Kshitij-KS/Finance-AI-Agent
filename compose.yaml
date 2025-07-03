@@ -1,0 +1,14 @@
+services:
+  backend:
+    build:
+      context: ./Backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./.env
+
+  frontend:
+    build:
+      context: ./Frontend
+    ports:
+      - "80:80"
