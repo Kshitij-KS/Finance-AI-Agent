@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 from textwrap import dedent
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from agno.agent import Agent
-from agno.models.groq import Groq
+from agno.agent.agent import Agent
+from agno.models.groq.groq import Groq
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.newspaper4k import Newspaper4kTools
 import markdown2
@@ -15,7 +15,7 @@ app = Flask(__name__)
 CORS(app) 
 
 GROQ_API_KEY = os.getenv('groq_api_key')
-GROQ_ID = os.getenv('groq_id')
+GROQ_ID = 'llama-3.3-70b-versatile'
 
 research_agent = Agent(
     model=Groq(id=GROQ_ID, api_key=GROQ_API_KEY),
