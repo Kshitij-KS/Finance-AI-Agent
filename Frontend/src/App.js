@@ -9,17 +9,15 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!query) return;
-
+    if (!query.trim()) return;
     setLoading(true);
+    setResponse('');
     try {
-      const result = await axios.post('http://localhost:5000/query', {
-        query: query,
-      });
-      setResponse(result.data.response);
+      const result = await axios.post('http://localhost:5000/query', { query });
+      setResponse(result.data.response || '');
     } catch (error) {
-      console.error('Error fetching response:', error);
-      setResponse(`Error: ${error.response?.data?.error || error.message}`);
+      const msg = `Error: ${error.response?.data?.error || error.message}`;
+      setResponse(msg);
     } finally {
       setLoading(false);
     }
@@ -27,37 +25,49 @@ function App() {
 
   return (
     <div className="app-root">
-      <div className="app-card">
-        <h1 className="app-title">Financial AI Agent</h1>
-        <form className="app-form" onSubmit={handleSubmit}>
+      <div className="app-card" role="region" aria-label="Finance AI agent">
+        <h1 className="app-title">Finance AI Research Agent</h1>
+
+        <form className="app-form" onSubmit={handleSubmit} aria-label="Query form">
+          <label htmlFor="query-input" className="visually-hidden">Enter a research topic</label>
           <input
+            id="query-input"
             className="app-input"
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Ask your financial question..."
+            placeholder="Ask a finance research question..."
             disabled={loading}
+            aria-disabled={loading}
+            aria-label="Research query"
           />
           <button
             className="app-button"
             type="submit"
-            disabled={loading}
+            disabled={loading || !query.trim()}
+            aria-busy={loading ? 'true' : 'false'}
           >
-            {loading ? 'Processing...' : 'Submit'}
+            {loading ? 'Researching…' : 'Ask'}
           </button>
         </form>
-        {response && (
-          <div className="app-response-container">
-            <h2 className="app-response-title">Response:</h2>
+
+        <div className="app-response-container" role="status" aria-live="polite" aria-relevant="additions text">
+          <h2 className="app-response-title">Response</h2>
+
+          {loading ? (
+            <div className="generated-stack">
+              <div className="generated generated-title" />
+              <div className="generated generated-line" />
+              <div className="generated generated-line" />
+              <div className="generated generated-line short" />
+            </div>
+          ) : (
             <div
-              className="app-response-content"
+              className="app-response-content fade-in"
               dangerouslySetInnerHTML={{ __html: response }}
             />
-          </div>
-        )}
-      </div>
-      <div className="app-footer">
-        <span>Powered by your Financial AI Agent &copy; {new Date().getFullYear()}</span>
+          )}
+        </div>
       </div>
     </div>
   );
