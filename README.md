@@ -54,7 +54,7 @@ The **Finance AI Bot** is an intelligent financial assistant that provides real-
 
 ### Usage
 
-1. Open the React app in your browser at http://localhost:3000.
+1. Open the React app in your browser at http://localhost:80.
 
 2. Enter a financial query (e.g., "What is the current state of the stock market?").
 
