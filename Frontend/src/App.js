@@ -13,7 +13,8 @@ function App() {
     setLoading(true);
     setResponse('');
     try {
-      const result = await axios.post('http://localhost:5000/query', { query });
+      const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+      const result = await axios.post(`${backendURL}/query`, { query });
       setResponse(result.data.response || '');
     } catch (error) {
       const msg = `Error: ${error.response?.data?.error || error.message}`;
