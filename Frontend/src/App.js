@@ -11,6 +11,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [mode, setMode] = useState('query');
+  const [showAbout, setShowAbout] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,9 +48,99 @@ function App() {
   return (
     <div className="app-root">
       <div className="app-card" role="region" aria-label="Finance AI agent">
-        <h1 className="app-title">Finance AI Research Agent</h1>
 
-        {/* MODE SELECTOR */}
+        {/* ── HEADER ── */}
+        <div className="app-header">
+          <div className="app-header-badge">AI · Finance Research</div>
+          <h1 className="app-title">Finance AI Research Agent</h1>
+          <p className="app-subtitle">Real-time financial intelligence from the world's most trusted sources.</p>
+          <button
+            className="about-toggle"
+            onClick={() => setShowAbout(v => !v)}
+            aria-expanded={showAbout}
+          >
+            {showAbout ? '✕ Close' : 'ℹ How it works'}
+          </button>
+        </div>
+
+        {/* ── ABOUT PANEL ── */}
+        {showAbout && (
+          <div className="about-panel" role="region" aria-label="About this tool">
+            <div className="about-grid">
+
+              <div className="about-card">
+                <div className="about-icon">🔍</div>
+                <h3>How it works</h3>
+                <p>
+                  Every query triggers a live web search across dozens of financial sources.
+                  Your question is never answered from a static database — it's always fresh,
+                  cross-referenced data from real-time results.
+                </p>
+              </div>
+
+              <div className="about-card">
+                <div className="about-icon">⚡</div>
+                <h3>Quick Answer</h3>
+                <p>
+                  Searches the web and delivers a concise, bullet-pointed summary in seconds.
+                  Best for fast lookups — stock prices, policy changes, earnings dates, definitions.
+                </p>
+              </div>
+
+              <div className="about-card">
+                <div className="about-icon">📑</div>
+                <h3>Deep Research</h3>
+                <p>
+                  Runs three parallel search angles — base facts, expert analysis, and future
+                  outlook — then synthesises them into a structured report with an executive
+                  summary, key findings, and implications. Ideal for investment research.
+                </p>
+              </div>
+
+              <div className="about-card">
+                <div className="about-icon">🛡️</div>
+                <h3>Source Credibility</h3>
+                <p>
+                  Every source gets a credibility score based on its domain. Regulators like
+                  RBI, SEBI, the Fed, and IMF score 1.0. Tier-1 outlets like Bloomberg,
+                  Reuters, and the FT score 0.93–0.95. Investment banks like JPMorgan and
+                  Goldman Sachs score 0.92. Unknown sites default to 0.50.
+                </p>
+              </div>
+
+              <div className="about-card">
+                <div className="about-icon">📊</div>
+                <h3>Confidence Score</h3>
+                <p>
+                  The badge you see after each response is the <strong>average credibility</strong> of
+                  all sources used. A High score (≥85%) means your answer came predominantly
+                  from premier institutions and wire services. A Low score means the results
+                  leaned on less-established outlets — treat them with caution.
+                </p>
+              </div>
+
+              <div className="about-card">
+                <div className="about-icon">🤖</div>
+                <h3>The AI Model</h3>
+                <p>
+                  Powered by <strong>Llama 3.3 70B</strong> via Groq's ultra-fast inference
+                  platform. The model reads the retrieved sources and synthesises them — it
+                  is explicitly instructed never to speculate beyond what the sources say,
+                  keeping hallucinations minimal.
+                </p>
+              </div>
+
+            </div>
+
+            <div className="about-disclaimer">
+              ⚠️ <strong>Disclaimer:</strong> This tool is for informational research only and
+              does not constitute financial advice. Always consult a registered financial
+              advisor before making investment decisions.
+            </div>
+          </div>
+        )}
+
+        {/* ── MODE SELECTOR ── */}
         <div className="mode-selector">
           <label htmlFor="mode">Mode:</label>
           <select
@@ -58,8 +149,8 @@ function App() {
             onChange={(e) => setMode(e.target.value)}
             disabled={loading}
           >
-            <option value="query">Quick Answer</option>
-            <option value="research">Deep Research</option>
+            <option value="query">⚡ Quick Answer</option>
+            <option value="research">📑 Deep Research</option>
           </select>
         </div>
 
@@ -70,6 +161,7 @@ function App() {
           </p>
         )}
 
+        {/* ── FORM ── */}
         <form className="app-form" onSubmit={handleSubmit} aria-label="Query form">
           <input
             className="app-input"
@@ -81,7 +173,6 @@ function App() {
             disabled={loading}
             aria-disabled={loading}
           />
-
           <button
             className="app-button"
             type="submit"
@@ -96,12 +187,8 @@ function App() {
           </button>
         </form>
 
-        {/* RESPONSE */}
-        <div
-          className="app-response-container"
-          role="status"
-          aria-live="polite"
-        >
+        {/* ── RESPONSE ── */}
+        <div className="app-response-container" role="status" aria-live="polite">
           <h2 className="app-response-title">Response</h2>
 
           {loading ? (
@@ -116,21 +203,20 @@ function App() {
             </div>
           ) : (
             <>
-              {/* ERROR BANNER */}
               {error && (
                 <div className="error-banner" role="alert">
                   <span className="error-icon">⚠️</span> {error}
                 </div>
               )}
 
-              {/* CONFIDENCE SCORE */}
               {confidence !== null && !error && (() => {
                 const { label, className } = confidenceLabel(confidence);
                 const pct = Math.round(confidence * 100);
                 return (
                   <div className="confidence-wrapper">
                     <div className={`confidence-badge ${className}`}>
-                      Source Confidence: <strong>{label}</strong> ({pct}%)
+                      <span>Source Confidence</span>
+                      <span><strong>{label}</strong> ({pct}%)</span>
                     </div>
                     <div className="confidence-bar-track">
                       <div
@@ -142,7 +228,6 @@ function App() {
                 );
               })()}
 
-              {/* MAIN RESPONSE */}
               {response && (
                 <div
                   className="app-response-content fade-in"
@@ -150,7 +235,6 @@ function App() {
                 />
               )}
 
-              {/* SOURCES */}
               {sources.length > 0 && (
                 <div className="sources-section">
                   <h3>Sources</h3>
