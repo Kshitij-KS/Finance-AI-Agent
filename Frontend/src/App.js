@@ -40,8 +40,8 @@ function App() {
   };
 
   const confidenceLabel = (score) => {
-    if (score >= 0.85) return { label: 'High', className: 'confidence-high' };
-    if (score >= 0.65) return { label: 'Medium', className: 'confidence-medium' };
+    if (score >= 0.80) return { label: 'High', className: 'confidence-high' };
+    if (score >= 0.60) return { label: 'Medium', className: 'confidence-medium' };
     return { label: 'Low', className: 'confidence-low' };
   };
 
