@@ -215,8 +215,9 @@ function App() {
                 return (
                   <div className="confidence-wrapper">
                     <div className={`confidence-badge ${className}`}>
-                      <span>Source Confidence</span>
-                      <span><strong>{label}</strong> ({pct}%)</span>
+                      <span>SOURCE CONFIDENCE</span>
+                      <span>·</span>
+                      <strong className={className}>{label} ({pct}%)</strong>
                     </div>
                     <div className="confidence-bar-track">
                       <div
