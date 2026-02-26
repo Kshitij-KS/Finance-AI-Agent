@@ -44,13 +44,63 @@ MAX_SEARCH_RESULTS = 6
 
 DEFAULT_CRED_SCORE = 0.5
 SOURCE_SCORES = {
+    # ── Indian Regulators & Government ───────────────────────────────────────
+    "rbi.org.in":                    1.0,   # Reserve Bank of India
+    "sebi.gov.in":                   1.0,   # Securities & Exchange Board of India
+    "finmin.nic.in":                 1.0,   # Ministry of Finance, India
+    "nseindia.com":                  0.95,  # National Stock Exchange
+    "bseindia.com":                  0.95,  # Bombay Stock Exchange
+    "pib.gov.in":                    0.9,   # Press Information Bureau (India govt)
+    "indiabudget.gov.in":            1.0,   # India Budget portal
+
+    # ── Global Regulators & Central Banks ────────────────────────────────────
+    "federalreserve.gov":            1.0,   # US Federal Reserve
+    "sec.gov":                       1.0,   # US SEC
+    "treasury.gov":                  1.0,   # US Treasury
+    "ecb.europa.eu":                 1.0,   # European Central Bank
+    "bankofengland.co.uk":           1.0,   # Bank of England
+    "imf.org":                       1.0,   # International Monetary Fund
+    "worldbank.org":                 1.0,   # World Bank
+    "bis.org":                       1.0,   # Bank for International Settlements
+    "oecd.org":                      0.98,  # OECD
+
+    # ── Tier-1 Global Financial News ─────────────────────────────────────────
     "reuters.com":                   0.95,
     "bloomberg.com":                 0.95,
-    "rbi.org.in":                    1.0,
-    "sebi.gov.in":                   1.0,
-    "economictimes.indiatimes.com":  0.7,
-    "moneycontrol.com":              0.65,
-    "livemint.com":                  0.75,
+    "ft.com":                        0.95,  # Financial Times
+    "wsj.com":                       0.93,  # Wall Street Journal
+    "cnbc.com":                      0.85,
+    "economist.com":                 0.93,
+    "barrons.com":                   0.90,  # Barron's
+    "marketwatch.com":               0.85,
+    "trading economics.com":         0.82,
+    "investing.com":                 0.78,
+
+    # ── Investment Banks & Research ──────────────────────────────────────────
+    "jpmorgan.com":                  0.92,  # JPMorgan Chase
+    "goldmansachs.com":              0.92,  # Goldman Sachs
+    "morganstanley.com":             0.92,  # Morgan Stanley
+    "blackrock.com":                 0.90,  # BlackRock
+    "vanguard.com":                  0.88,  # Vanguard
+    "fidelity.com":                  0.87,  # Fidelity
+    "ubs.com":                       0.88,  # UBS
+    "credit-suisse.com":             0.85,
+    "mckinsey.com":                  0.88,  # McKinsey & Company
+
+    # ── Indian Financial Media ────────────────────────────────────────────────
+    "economictimes.indiatimes.com":  0.78,
+    "livemint.com":                  0.80,
+    "moneycontrol.com":              0.72,
+    "financialexpress.com":          0.75,
+    "business-standard.com":         0.78,
+    "thehindubusinessline.com":      0.78,
+    "ndtvprofit.com":                0.70,
+
+    # ── Other Reliable Finance Sources ───────────────────────────────────────
+    "morningstar.com":               0.88,  # Morningstar (fund research)
+    "tradingview.com":               0.72,
+    "statista.com":                  0.80,
+    "macrotrends.net":               0.75,
 }
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
