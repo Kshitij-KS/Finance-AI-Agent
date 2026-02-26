@@ -101,10 +101,12 @@ function App() {
                 <div className="about-icon">🛡️</div>
                 <h3>Source Credibility</h3>
                 <p>
-                  Every source gets a credibility score based on its domain. Regulators like
-                  RBI, SEBI, the Fed, and IMF score 1.0. Tier-1 outlets like Bloomberg,
-                  Reuters, and the FT score 0.93–0.95. Investment banks like JPMorgan and
-                  Goldman Sachs score 0.92. Unknown sites default to 0.50.
+                  Every source is scored by domain authority. Regulators like RBI, SEBI, the Fed,
+                  IMF, and World Bank score <strong>1.0</strong>. Tier-1 outlets — Bloomberg,
+                  Reuters, FT, WSJ — score <strong>0.93–0.95</strong>. Investment banks like
+                  JPMorgan and Goldman Sachs score <strong>0.92</strong>. Indian financial media
+                  (ET, Mint, Business Standard) score <strong>0.72–0.80</strong>.
+                  Unknown sites default to <strong>0.50</strong>.
                 </p>
               </div>
 
@@ -112,10 +114,11 @@ function App() {
                 <div className="about-icon">📊</div>
                 <h3>Confidence Score</h3>
                 <p>
-                  The badge you see after each response is the <strong>average credibility</strong> of
-                  all sources used. A High score (≥85%) means your answer came predominantly
-                  from premier institutions and wire services. A Low score means the results
-                  leaned on less-established outlets — treat them with caution.
+                  Calculated as <strong>60% best source + 40% average</strong> across all results.
+                  This means one authoritative source (e.g. RBI = 1.0) meaningfully raises
+                  the score even if other results are from unknown sites. Thresholds:
+                  <strong> High ≥ 80%</strong>, <strong>Medium ≥ 60%</strong>,
+                  <strong> Low &lt; 60%</strong>.
                 </p>
               </div>
 
