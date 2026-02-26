@@ -142,6 +142,20 @@ def score_sources(results: list) -> list:
     return scored
 
 
+def calc_confidence(scored: list) -> float:
+    """
+    Weighted confidence: 60% best source + 40% mean score.
+    Ensures one authoritative source (e.g. RBI=1.0) meaningfully
+    raises confidence instead of being drowned by unknown sites.
+    """
+    if not scored:
+        return 0.0
+    scores = [s["score"] for s in scored]
+    best   = max(scores)
+    mean   = sum(scores) / len(scores)
+    return round(0.6 * best + 0.4 * mean, 2)
+
+
 def beautify_markdown(content: str) -> str:
     return markdown2.markdown(content)
 
@@ -206,8 +220,8 @@ Search Results:
 Please answer the question in 5–8 bullet points using only the above sources."""
 
         content = call_groq(QUERY_MODEL, system, user_msg)
-        scored  = score_sources(results)
-        confidence = round(sum(s["score"] for s in scored) / len(scored), 2) if scored else 0.0
+        scored     = score_sources(results)
+        confidence = calc_confidence(scored)
 
         return jsonify({
             "response":         beautify_markdown(content),
@@ -281,8 +295,8 @@ Write a comprehensive financial research report (minimum 1000 words) with these 
 *Research conducted by Finance AI Agent | {__import__('datetime').date.today()}*"""
 
         content = call_groq(RESEARCH_MODEL, system, user_msg)
-        scored  = score_sources(unique_results)
-        confidence = round(sum(s["score"] for s in scored) / len(scored), 2) if scored else 0.0
+        scored     = score_sources(unique_results)
+        confidence = calc_confidence(scored)
 
         return jsonify({
             "response":         beautify_markdown(content),
