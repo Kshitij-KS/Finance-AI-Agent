@@ -14,5 +14,5 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 5000
 
-# Run the application
-CMD ["python", "FinanceAI.py"]
+# Run with gunicorn (production WSGI server)
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:5000", "--timeout", "120", "FinanceAI:app"]

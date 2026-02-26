@@ -7,6 +7,8 @@ services:
       - "5000:5000"
     env_file:
       - ./.env
+    environment:
+      - FRONTEND_URL=http://localhost
     networks:
       - finance-net
 
@@ -14,10 +16,12 @@ services:
     container_name: finbot_frontend
     build:
       context: ./Frontend
+      args:
+        # REACT_APP_* vars are baked at BUILD time by CRA, not runtime.
+        # Pass them as build args so they end up in the JS bundle.
+        - REACT_APP_BACKEND_URL=http://localhost:5000
     ports:
       - "80:80"
-    environment:
-      - REACT_APP_BACKEND_URL=http://backend:5000
     depends_on:
       - backend
     networks:

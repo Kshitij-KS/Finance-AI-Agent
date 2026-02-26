@@ -222,9 +222,74 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive tweaks */
+/* ── Research hint ──────────────────────────────────────────────────────────── */
+.research-hint {
+  font-size: 0.88rem;
+  color: #64748b;
+  background: #f1f5f9;
+  border-left: 3px solid #4f8cff;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: -12px 0 16px;
+}
+
+/* ── Error banner ────────────────────────────────────────────────────────────── */
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #b91c1c;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+.error-icon { font-size: 1rem; }
+
+/* ── Confidence score ────────────────────────────────────────────────────────── */
+.confidence-wrapper {
+  margin-bottom: 14px;
+}
+.confidence-badge {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+.confidence-bar-track {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.confidence-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+/* High ≥ 85% */
+.confidence-badge.confidence-high  { color: #15803d; }
+.confidence-bar-fill.confidence-high  { background: #22c55e; }
+/* Medium ≥ 65% */
+.confidence-badge.confidence-medium { color: #92400e; }
+.confidence-bar-fill.confidence-medium { background: #f59e0b; }
+/* Low < 65% */
+.confidence-badge.confidence-low   { color: #b91c1c; }
+.confidence-bar-fill.confidence-low   { background: #ef4444; }
+
+/* ── Loading hint (deep research) ────────────────────────────────────────────── */
+.loading-hint {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin: 0 0 10px;
+  font-style: italic;
+}
+
+/* ── Responsive tweaks ───────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
-  .app-card { padding: 24px 18px; }
-  .app-form { flex-direction: column; }
+  .app-card  { padding: 24px 18px; }
+  .app-form  { flex-direction: column; }
   .app-button { width: 100%; padding: 12px; }
 }

@@ -3,11 +3,16 @@ FROM node:18-alpine AS build
 
 WORKDIR /usr/src/app
 
+# Accept the backend URL as a build-time argument
+# (REACT_APP_* vars are baked in at build time by CRA, not runtime)
+ARG REACT_APP_BACKEND_URL
+ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
+
 # Copy package.json and package-lock.json
 COPY package.json package-lock.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm ci
 
 # Copy the rest of the application code
 COPY . ./
